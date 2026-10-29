@@ -1,0 +1,18 @@
+{
+  "effect.mindclinic.depression": "Depression",
+  "effect.mindclinic.adhd": "ADHD",
+  "effect.mindclinic.schizophrenia": "Schizophrenia",
+  "effect.mindclinic.anxiety": "Anxiety",
+  "effect.mindclinic.insomnia": "Insomnia",
+  "effect.mindclinic.ocd": "OCD",
+  "effect.mindclinic.bipolar": "Bipolar Disorder",
+  "effect.mindclinic.autism": "Autism (ASD)",
+  "block.mindclinic.clinic_wall": "Clinic Wall",
+  "block.mindclinic.clinic_stripe": "Striped Clinic Wall",
+  "block.mindclinic.clinic_lamp": "Clinic Lamp",
+  "block.mindclinic.clinic_panel": "Diagnosis Panel",
+  "item.mindclinic.pill": "Pill",
+  "message.mindclinic.diagnosis": "Diagnosis: %s",
+  "message.mindclinic.given": "Gave %s to %s",
+  "message.mindclinic.cured": "Cured %s disorder(s) for %s"
+}

@@ -1,0 +1,18 @@
+{
+  "effect.mindclinic.depression": "Депрессия",
+  "effect.mindclinic.adhd": "СДВГ",
+  "effect.mindclinic.schizophrenia": "Шизофрения",
+  "effect.mindclinic.anxiety": "Тревожное расстройство",
+  "effect.mindclinic.insomnia": "Бессонница",
+  "effect.mindclinic.ocd": "ОКР",
+  "effect.mindclinic.bipolar": "Биполярное расстройство",
+  "effect.mindclinic.autism": "РАС (аутизм)",
+  "block.mindclinic.clinic_wall": "Стена клиники",
+  "block.mindclinic.clinic_stripe": "Полосатая стена клиники",
+  "block.mindclinic.clinic_lamp": "Лампа клиники",
+  "block.mindclinic.clinic_panel": "Диагностическая панель",
+  "item.mindclinic.pill": "Таблетка",
+  "message.mindclinic.diagnosis": "Диагноз: %s",
+  "message.mindclinic.given": "Расстройство «%s» назначено игроку %s",
+  "message.mindclinic.cured": "Снято расстройств: %s (игрок %s)"
+}

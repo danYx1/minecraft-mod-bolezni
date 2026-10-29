@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "mindclinic",
+  "version": "${version}",
+  "name": "Психиатрическая клиника",
+  "description": "Психические расстройства как эффекты: депрессия, СДВГ, шизофрения, тревожность, бессонница, ОКР, биполярное расстройство и РАС. Диагностическая панель выдаёт диагноз, таблетки лечат.",
+  "authors": ["MindClinic"],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": { "main": ["ru.mindclinic.MindClinic"] },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~26.3",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}

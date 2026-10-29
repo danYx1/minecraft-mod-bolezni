@@ -1,0 +1,1 @@
+{"type":"minecraft:block","pools":[{"rolls":1,"entries":[{"type":"minecraft:item","name":"mindclinic:clinic_lamp"}],"conditions":[{"condition":"minecraft:survives_explosion"}]}],"random_sequence":"mindclinic:blocks/clinic_lamp"}
