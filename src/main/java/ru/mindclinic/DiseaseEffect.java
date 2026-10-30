@@ -1,10 +1,11 @@
 package ru.mindclinic;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -25,6 +26,15 @@ public class DiseaseEffect extends MobEffect {
         return duration % disease.tickInterval == 0;
     }
 
+    private static void sound(ServerLevel level, LivingEntity entity, SoundEvent event, SoundSource source,
+                              float volume, float pitch, int spread) {
+        var rnd = entity.getRandom();
+        BlockPos pos = entity.blockPosition().offset(
+            spread == 0 ? 0 : rnd.nextInt(spread * 2 + 1) - spread, 0,
+            spread == 0 ? 0 : rnd.nextInt(spread * 2 + 1) - spread);
+        level.playSound(null, pos, event, source, volume, pitch);
+    }
+
     @Override
     public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
         var rnd = entity.getRandom();
@@ -32,20 +42,20 @@ public class DiseaseEffect extends MobEffect {
 
         switch (disease) {
             case SCHIZOPHRENIA -> {
-                // Слуховые «галлюцинации»: звуки слышит только сам игрок.
-                if (player != null && rnd.nextInt(12) == 0) {
+                // Слуховые «галлюцинации»: звуки из ниоткуда рядом с игроком.
+                if (rnd.nextInt(12) == 0) {
                     SoundEvent[] voices = {
                         SoundEvents.ENDERMAN_STARE, SoundEvents.CREEPER_PRIMED, SoundEvents.ZOMBIE_AMBIENT,
                         SoundEvents.SKELETON_AMBIENT, SoundEvents.WITCH_AMBIENT
                     };
-                    player.playNotifySound(voices[rnd.nextInt(voices.length)], SoundSource.HOSTILE,
-                        0.6f + rnd.nextFloat() * 0.4f, 0.7f + rnd.nextFloat() * 0.6f);
+                    sound(level, entity, voices[rnd.nextInt(voices.length)], SoundSource.HOSTILE,
+                        0.6f + rnd.nextFloat() * 0.4f, 0.7f + rnd.nextFloat() * 0.6f, 6);
                 }
             }
             case ANXIETY -> {
                 // Сердцебиение + дёрганость, если рядом враждебные мобы.
-                if (player != null && rnd.nextInt(4) == 0) {
-                    player.playNotifySound(SoundEvents.WARDEN_HEARTBEAT, SoundSource.PLAYERS, 0.8f, 1.0f);
+                if (rnd.nextInt(4) == 0) {
+                    sound(level, entity, SoundEvents.WARDEN_HEARTBEAT, SoundSource.PLAYERS, 0.8f, 1.0f, 0);
                 }
                 if (!level.getEntitiesOfClass(Monster.class, entity.getBoundingBox().inflate(8)).isEmpty()) {
                     entity.addEffect(new MobEffectInstance(MobEffects.SPEED, 40, 0, true, false));
@@ -76,8 +86,8 @@ public class DiseaseEffect extends MobEffect {
             }
             case ADHD -> {
                 // Отвлечения: изредка слышен посторонний звук.
-                if (player != null && rnd.nextInt(30) == 0) {
-                    player.playNotifySound(SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.PLAYERS, 0.7f, 0.5f + rnd.nextFloat());
+                if (rnd.nextInt(30) == 0) {
+                    sound(level, entity, SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.PLAYERS, 0.7f, 0.5f + rnd.nextFloat(), 3);
                 }
             }
             default -> { }
